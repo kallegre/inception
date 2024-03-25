@@ -1,6 +1,6 @@
-FROM debian:bookworm
+FROM debian:buster
 
-RUN apt update && apt install nginx openssl -y \
+RUN apt update && apt install -y nginx openssl \
 	&& mkdir -p /etc/nginx/ssl \
 #	mkdir -p /var/run/nginx \
 	&& openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=PACA/L=Nice/O=42/OU=42/CN=kallegre.42.fr"
