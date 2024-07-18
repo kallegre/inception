@@ -1,9 +1,12 @@
 FROM debian:buster
 
-RUN apt update && apt install -y nginx openssl \
-	&& mkdir -p /etc/nginx/ssl \
-	&& openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=PACA/L=Nice/O=42/OU=42/CN=kallegre.42.fr" \
-	&& mkdir -p /var/run/nginx
+RUN apt update
+RUN apt install -y nginx openssl
+
+RUN mkdir -p /etc/nginx/ssl
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=PACA/L=Nice/O=42/OU=42/CN=kallegre.42.fr"
+
+RUN mkdir -p /var/run/nginx
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
