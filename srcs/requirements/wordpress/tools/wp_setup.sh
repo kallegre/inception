@@ -9,29 +9,24 @@ then
 
 else
 	echo "$WP_PATH/wp-config.php not found."
-	wp-cli.phar core download --allow-root --path=$WP_PATH
 
-	echo $MYSQL_DATABASE
-	echo $MYSQL_USER
-	echo $MYSQL_PASSWORD
-	echo $WP_PATH
+	wp-cli.phar core download --allow-root --path=$WP_PATH
 
 	wp-cli.phar config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=mariadb --path=$WP_PATH --allow-root
 
 	echo "Wordpress Configured Successfully"
-	echo "Lunching Wordpress Installation"
 
 	wp-cli.phar core install  --allow-root --path=$WP_PATH \
-		--url='kallegre.42.fr' \
+		--url=$DOMAIN_NAME \
 		--title='Title' \
-		--admin_user='admin' \
-		--admin_password='admin' \
-		--admin_email='admin@admin.com' \
+		--admin_user=$ADMIN_USER \
+		--admin_password=$ADMIN_PASSWORD \
+		--admin_email=$ADMIN_EMAIL \
 		--skip-email
 
-	echo "Wordpress Installed Successfully"
+	wp-cli.phar theme activate twentytwentytwo --allow-root --path=$WP_PATH
 
-	wp-cli.phar theme install twentyseventeen --activate --path=$WP_PATH --allow-root
+	echo "Wordpress Installed Successfully"
 
 fi
 

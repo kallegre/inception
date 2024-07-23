@@ -51,13 +51,13 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/Users/kallere/data/wordpress'
+      device: '/home/kallegre/data/wordpress'
   mariadb:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/Users/kallere/data/mariadb'
+      device: '/home/kallegre/data/mariadb'
 
 networks:
   inception:
