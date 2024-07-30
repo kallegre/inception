@@ -1,4 +1,5 @@
 all:
+	mkdir -p /home/kallegre/data/mariadb /home/kallegre/data/wordpress
 	@docker-compose -f srcs/docker-compose.yml up -d --build
 
 down:

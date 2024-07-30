@@ -26,6 +26,8 @@ else
 
 	wp-cli.phar theme activate twentytwentytwo --allow-root --path=$WP_PATH
 
+	wp-cli.phar user create $WP_USER_NAME $WP_USER_MAIL --user_pass=$WP_USER_PASSWORD --role=author --allow-root --path=$WP_PATH
+
 	echo "Wordpress Installed Successfully"
 
 fi
